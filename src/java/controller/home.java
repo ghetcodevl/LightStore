@@ -24,7 +24,7 @@ import dao.ProductDAO;
  */
 @WebServlet(name = "home", urlPatterns = {"/home"})
 public class home extends HttpServlet {
-
+    ProductDAO dao = new ProductDAO();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

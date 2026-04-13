@@ -26,9 +26,33 @@ public class ProductDAO {
                     rs.getInt("id"),
                     rs.getString("name"),                    
                     rs.getString("image"),
-                    rs.getDouble("price")));             
+                    rs.getDouble("price"))); 
             }
         }
         return list;
     } 
+   public static List<Product> getByTag(String tag) throws ClassNotFoundException, SQLException {
+    List<Product> list = new ArrayList<>();
+    String sql = "SELECT * FROM products WHERE tag = ?";
+
+    try (Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, tag);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Product p = new Product(
+                rs.getInt("id"),
+                rs.getString("name"),
+                rs.getString("image"),
+                rs.getDouble("price")
+            );
+
+            p.setTag(rs.getString("tag"));
+            list.add(p);
+        }
+    }
+    return list;
+}
 }

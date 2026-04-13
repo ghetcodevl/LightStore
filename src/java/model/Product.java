@@ -13,6 +13,7 @@ public class Product {
     private String name;
     private String image;
     private double price;
+    private String tag;
 
     public Product() {
     }
@@ -23,6 +24,16 @@ public class Product {
         this.image = image;
         this.price = price;
     }
+    
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+    
+    
 
     public int getId() {
         return id;
